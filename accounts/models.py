@@ -8,8 +8,8 @@ from django.utils.translation import gettext_lazy as _
 
 
 class CustomUser(AbstractUser) :
-    username = models.CharField(max_length=255,unique=True)
-    email = models.EmailField(max_length=255,unique=True) 
+    username = models.CharField(max_length=255,unique=True,blank=False,null=False)
+    email = models.EmailField(max_length=255,unique=True,blank=False,null=False) 
     last_name = models.CharField(max_length=255,blank=True,null=True)
     first_name = models.CharField(max_length=255,blank=True,null=True) 
     
@@ -24,15 +24,17 @@ class Profile(models.Model) :
     class Gender(models.TextChoices) :
         FEMALE = 'F',_("female")
         MALE = "M",_("male")
+
+
     class Status(models.TextChoices) :
         PRIVATE = "P",_("private")
         PUBLIC = "A",_("public")
         
 
-    user   = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='profile')
-    bio        = models.TextField(max_length=255,blank=True,null=True)
-    pic        = models.ImageField(upload_to='profile_pics/',default='')
-    gender      = models.CharField(max_length=30,choices=Gender.choices,blank=True)
+    user         = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='profile')
+    bio          = models.TextField(max_length=255,blank=True,null=True)
+    pic          = models.ImageField(upload_to='profile_pics/',default='')
+    gender       = models.CharField(max_length=30,choices=Gender.choices,blank=True)
     date_of_birth = models.DateField(blank=True,null=True)
     created_at = models.DateTimeField(auto_now=False,auto_now_add=True) 
     updated_at = models.DateTimeField(auto_now=True) 
