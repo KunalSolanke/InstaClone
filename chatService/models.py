@@ -4,10 +4,6 @@ from django.conf import settings
 
 
 
-class Chat(models.Model) :
-    messages = models.ManyToManyField(Message,related_name="chats")
-    participants = models.ManyToManyField(settings.AUTH_USER_MODEL,related_name="total_chats")
-    chat_id   = models.AutoField(primary_key=True)
 
 
 
@@ -16,3 +12,8 @@ class Message(models.Model) :
     sender       =  models.ForeignKey(settings.AUTH_USER_MODEL,related_name="messages",on_delete=models.CASCADE)
     timestamp    =  models.DateTimeField(auto_now_add=True,auto_now=False)
     message_id   = models.AutoField(primary_key=True)
+
+class Chat(models.Model) :
+    messages = models.ManyToManyField(Message,related_name="chats")
+    participants = models.ManyToManyField(settings.AUTH_USER_MODEL,related_name="total_chats")
+    chat_id   = models.AutoField(primary_key=True)

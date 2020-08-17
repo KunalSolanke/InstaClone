@@ -38,6 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'taggit',
+
+    'accounts',
+    'chatService',
+    'Notifications',
+    'friends',
+    'posts'
+
     
 ]
 
@@ -133,3 +141,13 @@ AUTH_USER_MODEL= 'accounts.CustomUser'
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS=[
+    os.path.join(BASE_DIR,'static')
+]
+STATIC_ROOT =os.path.join(BASE_DIR,'assets')
+#MEDIA  FILES 
+
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT =os.path.join(BASE_DIR,'media')
