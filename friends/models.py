@@ -31,12 +31,34 @@ class FollowRequestManager(models.Manager) :
             following_request.save()
 
     def accept_and_followback(self,user1,user2) :
-        if()
+        if(user1==user2):
+            raise ValidationError("Users can not follow themselves")
+        else:
+            # Create a notification that follow request has been accepted
+            following_request = FollowRequest.objects.get(from_user=user1,to_user=user2,is_active=True)
+            following_request.is_accepted = True
+            following = Follower.objects.get(user=user1)
+            following.following.add(Follower.objects.get(user=user2))
+            follower = Follower.objects.get(user=user2)
+            follower.followers.add(Follower.objects.get(user=user1))
+            following.save()
+            follower.save()
+            following_request.save()
+            #Follow back
+            follow_request = FollowRequest.objects.create(from_user=user2,to_user=user1)
+            follow_reques.save()
 
-    def decline(self,from_user,to_user) :
+
+
+    def decline(self,user1,user2) :
 
         #create a notification her
-        pass
+        if(user1==user2):
+            raise ValidationError("Users can not follow themselves")
+        else:
+            follow_request = FollowRequest.objects.get(from_user=user1,to_user=user2,is_active=True)
+            follow_request.delete()
+            
 
 
 

@@ -8,8 +8,8 @@ from django.utils.translation import gettext_lazy as _
 
 
 class CustomUser(AbstractUser) :
-    username = models.CharField(max_length=255,unique=True,blank=False,null=False)
-    email = models.EmailField(max_length=255,unique=True,blank=False,null=False) 
+    username = models.CharField(max_length=255,unique=True,blank=True,null=True)
+    email = models.EmailField(max_length=255,unique=True,blank=True,null=True) 
     last_name = models.CharField(max_length=255,blank=True,null=True)
     first_name = models.CharField(max_length=255,blank=True,null=True) 
     
