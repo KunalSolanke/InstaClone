@@ -7,9 +7,10 @@ from django.utils import timezone
 
 #user,title,postid,description,
 
+
 class Post(models.Model) :
     post_id = models.AutoField(primary_key=True)
-    post_slug= models.SlugField() 
+    post_slug= models.SlugField(blank=True,null=True) 
     title = models.TextField(blank=True,null=True) 
     user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name="posts")
     description = models.TextField(blank=True,null=True) 
@@ -28,7 +29,7 @@ class Image(models.Model) :
 class Video(models.Model) :
     post_id = models.ForeignKey(Post,on_delete=models.CASCADE,related_name="post_videos")
     video_id = models.AutoField(primary_key=True)
-    url = models.URLField(("video_url"),default="")
+    video = models.FileField(upload_to="post/videos/",default="")
     
 
 class Like(models.Model) :
