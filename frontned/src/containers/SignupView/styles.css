@@ -1,0 +1,16 @@
+.MuiInputLabel-outlined{
+    font-size:13px;
+}
+
+#outlined-basic-label{
+    font-size:13px;
+}
+
+#outlined-basic-label:focus{
+    outline:none !important;
+}
+
+input:focus, textarea:focus, select:focus{
+    outline: none;
+}
+

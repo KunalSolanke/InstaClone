@@ -1,0 +1,13 @@
+.navbar .Mui-selected {
+    color :rgb(38,38,38) !important ;
+}
+
+.nav__elements{
+    display:flex;
+    align-items:center
+}
+
+.MuiAvatar-root{
+    width: 30px !important;
+    height : 30px !important ;
+}
